@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component>
+	<id>org.devofspine.SpineDemo</id>
+	<name>spinedemo</name>
+	<summary>PS4 emulator for Linux</summary>
+	<metadata_license>CC0-1.0</metadata_license>
+	<provides>
+		<binary>spinedemo</binary>
+	</provides>
+	<releases>
+		<release version="20190609" date="2019-06-09"/>
+		<release version="20190605" date="2019-06-05"/>
+	</releases>
+	<developer_name>devofspine</developer_name>
+</component>

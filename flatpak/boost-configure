@@ -1,0 +1,11 @@
+#!/bin/sh
+
+./bootstrap.sh "$@"
+
+cat <<EOF > "Makefile"
+LIB_TARGETS = --with-fiber --with-filesystem
+all:
+	./b2 \$(LIB_TARGETS)
+install:
+	./b2 install \$(LIB_TARGETS)
+EOF

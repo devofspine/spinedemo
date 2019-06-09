@@ -1,0 +1,106 @@
+{
+	"app-id": "org.devofspine.SpineDemo",
+	"runtime": "org.freedesktop.Platform",
+	"runtime-version": "18.08",
+	"sdk": "org.freedesktop.Sdk",
+	"command": "spinedemo",
+	"finish-args": [
+		"--share=ipc",
+		"--socket=x11",
+		"--device=dri"
+	],
+	"build-options": {
+		"strip": true
+	},
+	"modules": [
+		{
+			"name": "boost",
+			"buildsystem": "autotools",
+			"sources": [
+				{
+					"type": "archive",
+					"path": "boost_1_66_0.tar.bz2"
+				},
+				{
+					"type": "file",
+					"path": "boost-configure",
+					"dest-filename": "configure"
+				}
+			]
+		},
+		{
+			"name": "fmt",
+			"buildsystem": "cmake",
+			"config-opts": ["-DFMT_TEST=OFF"],
+			"sources": [
+				{
+					"type": "archive",
+					"path": "fmt-5.2.1.zip"
+				}
+			]
+		},
+		{
+			"name": "glew",
+			"buildsystem": "cmake",
+			"subdir": "build/cmake",
+			"config-opts": ["-DBUILD_UTILS=OFF"],
+			"sources": [
+				{
+					"type": "archive",
+					"path": "glew-2.1.0.tgz"
+				}
+			],
+			"post-install": [
+				"sed -i '/Requires:/d' /app/lib/pkgconfig/glew.pc"
+			]
+		},
+		{
+			"name": "tclap",
+			"buildsystem": "autotools",
+			"sources": [
+				{
+					"type": "archive",
+					"path": "tclap-1.2.2.tar.gz"
+				}
+			]
+		},
+		{
+			"name": "spinedemo",
+			"buildsystem": "meson",
+			"config-opts": ["-Ddemo=true", "--buildtype=release"],
+			"sources": [
+				{
+					"type": "file",
+					"path": "../meson.build"
+				},
+				{
+					"type": "file",
+					"path": "../meson_options.txt"
+				},
+				{
+					"type": "dir",
+					"path": "../external",
+					"dest": "external"
+				},
+				{
+					"type": "dir",
+					"path": "../src",
+					"dest": "src"
+				},
+				{
+					"type": "file",
+					"path": "org.devofspine.SpineDemo.appdata.xml"
+				}
+			],
+			"post-install": [
+				"install -Dm755 /run/build/spinedemo/_flatpak_build/spine /app/bin/spinedemo",
+				"install -Dm644 /run/build/spinedemo/org.devofspine.SpineDemo.appdata.xml /app/share/appdata/org.devofspine.SpineDemo.appdata.xml",
+				"rm -r /app/include",
+				"rm -r /app/lib/cmake",
+				"rm -r /app/lib/pkgconfig",
+				"rm -r /app/lib/*.a",
+				"rm -r /app/share/doc"
+			]
+		}
+	]
+}
