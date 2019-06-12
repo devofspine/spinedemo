@@ -1,4 +1,4 @@
-**NOTE** This repository contains sources of a Flatpak package for spinedemo. Spinedemo is a demo version of spine which is a Wine-like PS4 emulator for Linux that is being developed in private.
+**NOTE** This repository contains sources of a *Flatpak package* for spinedemo. Spinedemo is a demo version of spine which is a Wine-like PS4 emulator for Linux that is being developed in private.
 
 *See releases for binary downloads.*
 
