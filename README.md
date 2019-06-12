@@ -105,7 +105,7 @@ keypad 3 or h - rightstick right
 20190609
 	One more down, 9998 to go. Additional rightstick keys for laptop keyboards.
 20190607
-	Statically linked binary with no dependencies expcept GL and SDL2
+	Statically linked binary with no dependencies except GL and SDL2
 20190605
 	Initial release
 ```
